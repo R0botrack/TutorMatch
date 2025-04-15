@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TutorMatch - Login</title>
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #e0f2fe, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+      border-top: 4px solid #10b981;
+    }
+
+    .card-header {
+      padding: 24px 24px 12px;
+      text-align: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #059669;
+      margin-bottom: 8px;
+    }
+
+    .brand-icon {
+      font-size: 24px;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .card-description {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      top: 36px;
+      color: #94a3b8;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+
+    .forgot-password {
+      display: block;
+      text-align: right;
+      font-size: 14px;
+      color: #059669;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .card-footer {
+      padding: 0 24px 24px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #059669;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #047857;
+    }
+
+    .signup-text {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .signup-link {
+      color: #059669;
+      text-decoration: none;
+    }
+
+    .signup-link:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .alert-error {
+      background-color: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .alert-success {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 8px;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .social-login {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .social-login-text {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .social-login-text::before,
+    .social-login-text::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 1px;
+      background-color: #e2e8f0;
+    }
+
+    .social-login-text::before {
+      left: 0;
+    }
+
+    .social-login-text::after {
+      right: 0;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-btn.google {
+      color: #ea4335;
+    }
+
+    .social-btn.facebook {
+      color: #1877f2;
+    }
+
+    .social-btn.apple {
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="card-header">
+      <div class="brand">
+        <i class="fas fa-book-open brand-icon"></i>
+        <div class="brand-name">TutorMatch</div>
+      </div>
+      <div class="card-description">Sign in to access your personalized tutoring dashboard</div>
+    </div>
+    
+    <div class="card-content">
+      <div id="alert" class="alert"></div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" name="email" placeholder="student@example.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="password" name="password" required>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+      </form>
+    </div>
+    
+    <div class="card-footer">
+      <button id="loginButton" class="btn">
+        <i class="fas fa-sign-in-alt"></i> Sign in
+        <span id="spinner" class="spinner"></span>
+      </button>
+      
+      <p class="signup-text">
+        New to TutorMatch? <a href="#" class="signup-link">Create an account</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      const loginButton = document.getElementById('loginButton');
+      const spinner = document.getElementById('spinner');
+      const alert = document.getElementById('alert');
+      
+      loginButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Validate form
+        if (!email || !password) {
+          showAlert('Please fill in all fields', 'error');
+          return;
+        }
+        
+        // Show loading state
+        loginButton.disabled = true;
+        spinner.style.display = 'inline-block';
+        
+        // Prepare data for AJAX request
+        const formData = {
+          email: email,
+          password: password
+        };
+      });
+      });
+  </script>
+</body>
+</html>
